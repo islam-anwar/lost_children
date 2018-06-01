@@ -12,9 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -41,7 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Found.findByGender", query = "SELECT f FROM Found f WHERE f.gender = :gender"),
     @NamedQuery(name = "Found.findByFoundDate", query = "SELECT f FROM Found f WHERE f.foundDate = :foundDate"),
     @NamedQuery(name = "Found.findByFoundLocation", query = "SELECT f FROM Found f WHERE f.foundLocation = :foundLocation"),
-    @NamedQuery(name = "Found.findByReturned", query = "SELECT f FROM Found f WHERE f.returned = :returned")})
+    @NamedQuery(name = "Found.findByReturned", query = "SELECT f FROM Found f WHERE f.returned = :returned"),
+    @NamedQuery(name = "Found.findByCurrentLocation", query = "SELECT f FROM Found f WHERE f.currentLocation = :currentLocation")})
 public class Found implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -87,9 +86,9 @@ public class Found implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "returned")
     private String returned;
-    @JoinColumn(name = "found_user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Users foundUserId;
+    @Size(max = 200)
+    @Column(name = "current_location")
+    private String currentLocation;
 
     public Found() {
     }
@@ -201,12 +200,12 @@ public class Found implements Serializable {
         this.returned = returned;
     }
 
-    public Users getFoundUserId() {
-        return foundUserId;
+    public String getCurrentLocation() {
+        return currentLocation;
     }
 
-    public void setFoundUserId(Users foundUserId) {
-        this.foundUserId = foundUserId;
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
     }
 
     @Override
@@ -231,7 +230,7 @@ public class Found implements Serializable {
 
     @Override
     public String toString() {
-        return "persistence.dto.Found[ id=" + id + " ]";
+        return "persistence.pojo.Found[ id=" + id + " ]";
     }
     
 }

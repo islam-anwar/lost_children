@@ -6,6 +6,7 @@ persistence\pojo\Lost.class
 user_dao\UserLogInDao.class
 persistence\pojo\Users.class
 persistence\pojo\Users_.class
+user\dto\UserImageUploadeDto.class
 user_dao\UserDataRegisterDao.class
 user_rest_webservice\UserLogInService.class
 user\dto\LogInDataDto.class

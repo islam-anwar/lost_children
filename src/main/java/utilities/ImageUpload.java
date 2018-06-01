@@ -33,13 +33,14 @@ public class ImageUpload {
 
         if (!inputFile.isEmpty()) {
             try {
-                System.out.println("dasdadadadadadadadadadad" + context.getContextPath());
-                String filePath = context.getContextPath() + File.separator + fileLocation + File.separator + fileName + "." + getFileExtension(inputFile.getName());
+                
+                String filePath = context.getRealPath("") + File.separator + fileLocation + File.separator + fileName + "." + getFileExtension(inputFile.getOriginalFilename());
+                System.out.println("file path: "+filePath);
                 File destinationFile = new File(filePath);
 
                 inputFile.transferTo(destinationFile);
 
-                return filePath;
+                return fileLocation+File.separator+fileName+"."+getFileExtension(inputFile.getOriginalFilename());
             } catch (Exception e) {
 
                 e.printStackTrace();
@@ -50,9 +51,10 @@ public class ImageUpload {
         }
     }
 
-    public String getFileExtension(String fileName) {
+    public static String getFileExtension(String fileName) {
 
         if (fileName != null) {
+            
            return FilenameUtils.getExtension(fileName);
         }
         return null;

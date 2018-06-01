@@ -32,16 +32,17 @@ public class UserImageUploadeService {
     @Autowired
     ImageUpload imageUpload;
 
-    public @RequestMapping(value = "/imageUploade", headers = ("content-type=multipart/*"), method = RequestMethod.POST)
+    public @RequestMapping(value = "/imageUploade.json", headers = ("content-type=multipart/*"), method = RequestMethod.POST)
     UserImageUploadeDto imageUpload(@RequestParam(value = "userImage") MultipartFile inputFile, @RequestParam(value = "email") String email) {
-
+        
         UserDataRegisterDao userDataRegDao = appContext.getBean(UserDataRegisterDao.class);
         UserImageUploadeDto userImageUploadeDto = appContext.getBean(UserImageUploadeDto.class);
 
         String imageUrl = imageUpload.imageUploading(inputFile, email, "users_images");
 
         if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
-            Users userData = userDataRegDao.updateUserImageUrl(imageUrl, email);
+            int userId = userDataRegDao.updateUserImageUrl(imageUrl, email);
+            Users userData=userDataRegDao.findOne(userId);
 
             userImageUploadeDto.setStatus("SUCCESS");
             userImageUploadeDto.setUser(userData);

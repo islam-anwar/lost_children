@@ -5,21 +5,23 @@
  */
 package user_dao;
 
-
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
 import persistence.pojo.Users;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author eslam java
  */
-public interface UserDataRegisterDao extends CrudRepository<Users, Integer>{
+public interface UserDataRegisterDao extends CrudRepository<Users, Integer> {
 
-   Users findByEmail(@Param("email")String email);
-   Users updateUserImageUrl(@Param("imgUrl")String imageUrl,@Param("email")String email);
-   
-   
-    
+    Users findByEmail(@Param("email") String email);
+
+    @Transactional
+    @Modifying
+    int updateUserImageUrl(@Param("imageUrl") String imageUrl, @Param("email") String email);
+
 }
