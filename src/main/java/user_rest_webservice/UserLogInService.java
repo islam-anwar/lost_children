@@ -34,7 +34,7 @@ public class UserLogInService {
 
         UserLogInDao userLoginDao = context.getBean(UserLogInDao.class);
         Users userData = userLoginDao.findByEmailAndPassword(email, password);
-        LogInDataDto loginData = context.getBean(LogInDataDto.class);
+        LogInDataDto loginData = (LogInDataDto)context.getBean("logInDataDto");
         if (userData == null) {
 
             loginData.setStatus("FAILED");

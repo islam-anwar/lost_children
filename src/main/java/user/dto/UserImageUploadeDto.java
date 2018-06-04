@@ -6,6 +6,7 @@
 package user.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import persistence.pojo.Users;
@@ -14,9 +15,10 @@ import persistence.pojo.Users;
  *
  * @author eslam java
  */
-@Component
+@Component(value = "userImageUploadeDto")
 @Scope(value = "prototype")
 @XmlRootElement
+
 public class UserImageUploadeDto extends LogInDataDto{
 
     public UserImageUploadeDto() {

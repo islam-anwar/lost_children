@@ -16,7 +16,7 @@ import persistence.pojo.Users;
  * @author eslam java
  */
 
-@Component
+@Component(value = "logInDataDto")
 @Scope(value = "prototype")
 @XmlRootElement
 

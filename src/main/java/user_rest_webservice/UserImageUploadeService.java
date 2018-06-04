@@ -36,7 +36,7 @@ public class UserImageUploadeService {
     UserImageUploadeDto imageUpload(@RequestParam(value = "userImage") MultipartFile inputFile, @RequestParam(value = "email") String email) {
         
         UserDataRegisterDao userDataRegDao = appContext.getBean(UserDataRegisterDao.class);
-        UserImageUploadeDto userImageUploadeDto = appContext.getBean(UserImageUploadeDto.class);
+        UserImageUploadeDto userImageUploadeDto = (UserImageUploadeDto)appContext.getBean("userImageUploadeDto");
 
         String imageUrl = imageUpload.imageUploading(inputFile, email, "users_images");
 
