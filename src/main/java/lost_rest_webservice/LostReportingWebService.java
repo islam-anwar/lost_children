@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import persistence.pojo.Found;
+import persistence.pojo.Lost;
 import persistence.pojo.Users;
-import reporting_dao.FoundDao;
+import reporting_dao.LostDao;
 import user_dao.UserDataRegisterDao;
 import utilities.ImageUpload;
 
@@ -30,20 +30,20 @@ public class LostReportingWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/lostReport", method = RequestMethod.POST)
-    String reportingFound(Found found,@RequestParam(value="email")String email,@RequestParam(value = "image")MultipartFile image){
+    String reportingFound(Lost lost,@RequestParam(value="email")String email,@RequestParam(value = "image")MultipartFile image){
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
-        FoundDao foundDao = context.getBean(FoundDao.class);
+        LostDao foundDao = context.getBean(LostDao.class);
         Users userData = userDao.findByEmail(email);
        
 
         if (userData != null) {
             
            Date date=new Date();
-            found.setFoundUserId(userData);
+            lost.setLostUserId(userData);
             String imageUrl = imageUpload.imageUploading(image, email+date.toString()+System.nanoTime(), "lost_images");
-            found.setImageUrl(imageUrl);
-            foundDao.save(found);
+            lost.setImageUrl(imageUrl);
+            foundDao.save(lost);
             
             
             
