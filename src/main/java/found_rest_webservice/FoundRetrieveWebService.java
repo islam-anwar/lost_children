@@ -5,8 +5,8 @@
  */
 package found_rest_webservice;
 
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,53 +25,25 @@ import utilities.ImageUpload;
  * @author eslam java
  */
 @RestController
-public class FoundReportWebService {
-
+public class FoundRetrieveWebService {
+    
     @Autowired
     private ApplicationContext context;
-    @Autowired
-    ImageUpload imageUpload;
-
-    public @RequestMapping(value = "/foundReport", method = RequestMethod.POST)
-    String reportingFound(Found found,@RequestParam(value="email")String email,@RequestParam(value = "image")MultipartFile image){
-
-        UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
+    
+    public @RequestMapping(value = "/foundRetrieve.json", method = RequestMethod.GET)
+    List<Found> retrievingFound() {
+        
         FoundDao foundDao = context.getBean(FoundDao.class);
-        Users userData = userDao.findByEmail(email);
-       
-
-        if (userData != null) {
-            
-           Date date=new Date();
-            found.setFoundUserId(userData);
-            String imageUrl = imageUpload.imageUploading(image, email+date.toString()+System.nanoTime(), "found_images");
-            found.setImageUrl(imageUrl);
-            foundDao.save(found);
-            
-            
-            
-            
-            return "SUCCESS";
-        }
-
-        return "FAILED";
+        
+        return foundDao.findByReturned("no");
     }
-
-
-
+    
     public ApplicationContext getContext() {
         return context;
     }
-
+    
     public void setContext(ApplicationContext context) {
         this.context = context;
     }
-
-    public ImageUpload getImageUpload() {
-        return imageUpload;
-    }
-
-    public void setImageUpload(ImageUpload imageUpload) {
-        this.imageUpload = imageUpload;
-    }
+    
 }

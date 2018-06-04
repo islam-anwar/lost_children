@@ -5,7 +5,9 @@
  */
 package reporting_dao;
 
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import persistence.pojo.Found;
 import persistence.pojo.Users;
 
@@ -14,5 +16,7 @@ import persistence.pojo.Users;
  * @author eslam java
  */
 public interface FoundDao extends CrudRepository<Found, Integer>  {
+    
+    List<Found>findByReturned(@Param("returned") String value);
     
 }
