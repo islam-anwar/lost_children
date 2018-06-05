@@ -5,6 +5,7 @@
  */
 package persistence.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
 /**
  *
@@ -93,6 +95,7 @@ public class Found implements Serializable {
     private String currentLocation;
     @JoinColumn(name = "found_user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+  
     private Users foundUserId;
 
     public Found() {

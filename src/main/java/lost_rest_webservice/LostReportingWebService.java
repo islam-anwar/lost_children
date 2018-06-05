@@ -35,20 +35,20 @@ public class LostReportingWebService {
     String reportingFound(Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
-        LostDao foundDao = context.getBean(LostDao.class);
+        LostDao lostDao = context.getBean(LostDao.class);
         Users userData = userDao.findByEmail(email);
 
         if (userData != null) {
 
             Date date = new Date();
             lost.setLostUserId(userData);
-            String imageUrl = imageUpload.imageUploading(image, email + date.toString() + System.nanoTime(), "lost_images");
-            lost.setImageUrl(imageUrl);
-            foundDao.save(lost);
-
-            return "SUCCESS";
+            String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images");
+            if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
+                lost.setImageUrl(imageUrl);
+                lostDao.save(lost);
+                return "SUCCESS";
+            }
         }
-
         return "FAILED";
     }
 

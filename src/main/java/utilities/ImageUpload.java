@@ -6,7 +6,6 @@
 package utilities;
 
 import java.io.File;
-import javax.inject.Scope;
 import javax.servlet.ServletContext;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.context.annotation.Scope;
 
 /**
  *
  * @author eslam java
  */
 @Component
+@Scope(value = "prototype")
 
 public class ImageUpload {
 

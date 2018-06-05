@@ -5,6 +5,7 @@
  */
 package persistence.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -84,8 +85,10 @@ public class Users implements Serializable {
     @Column(name = "phone")
     private String phone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "foundUserId", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Collection<Found> foundCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "lostUserId", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Collection<Lost> lostCollection;
 
     public Users() {

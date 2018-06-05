@@ -33,31 +33,27 @@ public class FoundReportWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/foundReport", method = RequestMethod.POST)
-    String reportingFound(Found found,@RequestParam(value="email")String email,@RequestParam(value = "image")MultipartFile image){
+    String reportingFound(Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         FoundDao foundDao = context.getBean(FoundDao.class);
         Users userData = userDao.findByEmail(email);
-       
 
         if (userData != null) {
-            
-           Date date=new Date();
+
+            Date date = new Date();
             found.setFoundUserId(userData);
-            String imageUrl = imageUpload.imageUploading(image, email+date.toString()+System.nanoTime(), "found_images");
-            found.setImageUrl(imageUrl);
-            foundDao.save(found);
-            
-            
-            
-            
-            return "SUCCESS";
+            String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "found_images");
+            if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
+                found.setImageUrl(imageUrl);
+                foundDao.save(found);
+                return "SUCCESS";
+
+            }
         }
 
         return "FAILED";
     }
-
-
 
     public ApplicationContext getContext() {
         return context;

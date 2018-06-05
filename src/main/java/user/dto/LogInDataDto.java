@@ -7,6 +7,7 @@ package user.dto;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import persistence.pojo.Users;
@@ -19,6 +20,7 @@ import persistence.pojo.Users;
 @Component(value = "logInDataDto")
 @Scope(value = "prototype")
 @XmlRootElement
+@Qualifier
 
 public class LogInDataDto {
     
