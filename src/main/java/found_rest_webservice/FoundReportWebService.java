@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class FoundReportWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/foundReport", method = RequestMethod.POST)
-    String reportingFound(Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
+    String reportingFound(@RequestBody Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         FoundDao foundDao = context.getBean(FoundDao.class);

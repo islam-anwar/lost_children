@@ -9,6 +9,7 @@ import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,10 +28,11 @@ public class UserDataRegisterService {
     private ApplicationContext context;
 
     public @RequestMapping(value = "/register.json", method = RequestMethod.POST)
-    Users register(Users user) {
+    Users register(@RequestBody Users user) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         Users userData = userDao.findByEmail(user.getEmail());
+        System.out.println("user: "+user.toString());
 
         if (userData != null) {
             Users userResponse = new Users();

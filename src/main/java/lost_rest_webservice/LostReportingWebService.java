@@ -8,6 +8,7 @@ package lost_rest_webservice;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ public class LostReportingWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/lostReport", method = RequestMethod.POST)
-    String reportingFound(Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
+    String reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         LostDao lostDao = context.getBean(LostDao.class);
