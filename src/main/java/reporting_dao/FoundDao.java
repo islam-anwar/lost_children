@@ -6,8 +6,10 @@
 package reporting_dao;
 
 import java.util.List;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import persistence.pojo.Found;
 import persistence.pojo.Users;
 
@@ -15,8 +17,12 @@ import persistence.pojo.Users;
  *
  * @author eslam java
  */
-public interface FoundDao extends CrudRepository<Found, Integer>  {
-    
-    List<Found>findByReturned(@Param("returned") String value);
-    
+public interface FoundDao extends CrudRepository<Found, Integer> {
+
+    List<Found> findByReturned(@Param("returned") String value);
+
+    @Transactional
+    @Modifying
+    int updateFoundReturned(@Param("returned") String value, @Param("id") int id);
+
 }

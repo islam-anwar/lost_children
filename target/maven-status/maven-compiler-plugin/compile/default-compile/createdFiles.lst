@@ -3,14 +3,17 @@ lost_rest_webservice\LostRetrieveWebService.class
 reporting_dao\FoundDao.class
 utilities\ImageUpload.class
 persistence\pojo\Found_.class
+others_dto\StatusJson.class
 user_rest_webservice\UserDataRegisterService.class
 persistence\pojo\Found.class
 persistence\pojo\Lost.class
+found_rest_webservice\FoundReturnedWebService.class
 user_dao\UserLogInDao.class
 persistence\pojo\Users.class
 found_rest_webservice\FoundReportWebService.class
 reporting_dao\LostDao.class
 persistence\pojo\Users_.class
+lost_rest_webservice\LostReturnedWebService.class
 user\dto\UserImageUploadeDto.class
 user_dao\UserDataRegisterDao.class
 user_rest_webservice\UserLogInService.class

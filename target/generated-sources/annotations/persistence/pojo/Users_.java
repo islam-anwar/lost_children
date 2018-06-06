@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import persistence.pojo.Found;
 import persistence.pojo.Lost;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-05T04:03:23")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-06-06T04:11:30")
 @StaticMetamodel(Users.class)
 public class Users_ { 
 

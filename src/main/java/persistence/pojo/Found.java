@@ -44,8 +44,10 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
     @NamedQuery(name = "Found.findByFoundDate", query = "SELECT f FROM Found f WHERE f.foundDate = :foundDate"),
     @NamedQuery(name = "Found.findByFoundLocation", query = "SELECT f FROM Found f WHERE f.foundLocation = :foundLocation"),
     @NamedQuery(name = "Found.findByReturned", query = "SELECT f FROM Found f WHERE f.returned = :returned"),
-    @NamedQuery(name = "Found.findByCurrentLocation", query = "SELECT f FROM Found f WHERE f.currentLocation = :currentLocation")})
+    @NamedQuery(name = "Found.findByCurrentLocation", query = "SELECT f FROM Found f WHERE f.currentLocation = :currentLocation"),
+    @NamedQuery(name = "Found.updateFoundReturned",query = "UPDATE Found f  set f.returned =:returned where f.id =:id")})
 public class Found implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,7 +97,7 @@ public class Found implements Serializable {
     private String currentLocation;
     @JoinColumn(name = "found_user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-  
+
     private Users foundUserId;
 
     public Found() {
@@ -248,5 +250,5 @@ public class Found implements Serializable {
     public String toString() {
         return "persistence.pojo.Found[ id=" + id + " ]";
     }
-    
+
 }
