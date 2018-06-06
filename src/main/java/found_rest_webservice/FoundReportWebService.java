@@ -5,7 +5,7 @@
  */
 package found_rest_webservice;
 
-import java.util.Calendar;
+
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import others_dto.StatusJson;
 import persistence.pojo.Found;
 import persistence.pojo.Users;
 import reporting_dao.FoundDao;
@@ -33,8 +34,8 @@ public class FoundReportWebService {
     @Autowired
     ImageUpload imageUpload;
 
-    public @RequestMapping(value = "/foundReport", method = RequestMethod.POST)
-    String reportingFound(@RequestBody Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
+    public @RequestMapping(value = "/foundReport.json", method = RequestMethod.POST)
+    StatusJson reportingFound(@RequestBody Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         FoundDao foundDao = context.getBean(FoundDao.class);
@@ -48,12 +49,12 @@ public class FoundReportWebService {
             if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
                 found.setImageUrl(imageUrl);
                 foundDao.save(found);
-                return "SUCCESS";
+                return new StatusJson("SUCCESS");
 
             }
         }
 
-        return "FAILED";
+        return new StatusJson("FAILED") ;
     }
 
     public ApplicationContext getContext() {

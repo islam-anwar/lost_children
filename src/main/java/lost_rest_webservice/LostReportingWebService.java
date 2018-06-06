@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import others_dto.StatusJson;
 import persistence.pojo.Lost;
 import persistence.pojo.Users;
 import reporting_dao.LostDao;
@@ -32,8 +33,8 @@ public class LostReportingWebService {
     @Autowired
     ImageUpload imageUpload;
 
-    public @RequestMapping(value = "/lostReport", method = RequestMethod.POST)
-    String reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
+    public @RequestMapping(value = "/lostReport.json", method = RequestMethod.POST)
+    StatusJson reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         LostDao lostDao = context.getBean(LostDao.class);
@@ -47,10 +48,10 @@ public class LostReportingWebService {
             if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
                 lost.setImageUrl(imageUrl);
                 lostDao.save(lost);
-                return "SUCCESS";
+                return new StatusJson("SUCCESS");
             }
         }
-        return "FAILED";
+        return new StatusJson("FAILED");
     }
 
     public ApplicationContext getContext() {

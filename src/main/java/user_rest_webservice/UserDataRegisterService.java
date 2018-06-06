@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import others_dto.StatusJson;
 import persistence.pojo.Users;
 import user_dao.UserDataRegisterDao;
 
@@ -32,29 +33,28 @@ public class UserDataRegisterService {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         Users userData = userDao.findByEmail(user.getEmail());
-        System.out.println("user: "+user.toString());
 
         if (userData != null) {
             Users userResponse = new Users();
-            userResponse.setEmail("Dublicated email");
+            userResponse.setEmail("FOUND");
             return userResponse;
         }
 
         return userDao.save(user);
     }
 
-    public @RequestMapping(value = "/emailCheck", method = RequestMethod.GET)
-    String checkingEmail(@RequestParam(value = "email") String email) {
+    public @RequestMapping(value = "/emailCheck.json", method = RequestMethod.GET)
+    StatusJson checkingEmail(@RequestParam(value = "email") String email) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         Users userData = userDao.findByEmail(email);
 
         if (userData != null) {
 
-            return "FOUND";
+            return new StatusJson("FOUND");
         }
 
-        return "NOT_FOUND";
+        return new StatusJson("NOT_FOUND");
     }
 
     public ApplicationContext getContext() {
