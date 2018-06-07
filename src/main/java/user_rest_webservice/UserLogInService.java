@@ -5,9 +5,11 @@
  */
 package user_rest_webservice;
 
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,18 +24,16 @@ import user_dao.UserLogInDao;
  * @author eslam java
  */
 @RestController
-@Scope(value = "prototype")
-
 public class UserLogInService {
 
     @Autowired
     private ApplicationContext context;
 
     public @RequestMapping(value = "/login.json", method = RequestMethod.POST)
-    LogInDataDto register(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
+    LogInDataDto register(@RequestBody HashMap<String,String> userAuthintecation) {
 
         UserLogInDao userLoginDao = context.getBean(UserLogInDao.class);
-        Users userData = userLoginDao.findByEmailAndPassword(email, password);
+        Users userData = userLoginDao.findByEmailAndPassword(userAuthintecation.get("email"), userAuthintecation.get("password"));
         LogInDataDto loginData = (LogInDataDto)context.getBean("logInDataDto");
         if (userData == null) {
 
