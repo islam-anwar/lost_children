@@ -14,7 +14,7 @@
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <tx:annotation-driven/>
-    <jpa:repositories base-package="user_dao,reporting_dao"/>
+    <jpa:repositories base-package="user_dao,lost_found_dao"/>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         

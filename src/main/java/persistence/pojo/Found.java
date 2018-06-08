@@ -45,7 +45,10 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
     @NamedQuery(name = "Found.findByFoundLocation", query = "SELECT f FROM Found f WHERE f.foundLocation = :foundLocation"),
     @NamedQuery(name = "Found.findByReturned", query = "SELECT f FROM Found f WHERE f.returned = :returned"),
     @NamedQuery(name = "Found.findByCurrentLocation", query = "SELECT f FROM Found f WHERE f.currentLocation = :currentLocation"),
-    @NamedQuery(name = "Found.updateFoundReturned",query = "UPDATE Found f  set f.returned =:returned where f.id =:id")})
+    @NamedQuery(name = "Found.updateFoundReturned", query = "UPDATE Found f  set f.returned =:returned where f.id =:id"),
+    @NamedQuery(name = "Found.findByGenderFnameLname", query = "SELECT f FROM Found f WHERE f.firstName = :firstName AND f.lastName=:lastName AND f.gender=:gender"),
+    @NamedQuery(name = "Found.findByGenderFname", query = "SELECT f FROM Found f WHERE f.firstName = :firstName AND f.gender=:gender"),
+    @NamedQuery(name = "Found.findByGenderLname", query = "SELECT f FROM Found f WHERE f.lastName=:lastName AND f.gender=:gender")})
 public class Found implements Serializable {
 
     private static final long serialVersionUID = 1L;

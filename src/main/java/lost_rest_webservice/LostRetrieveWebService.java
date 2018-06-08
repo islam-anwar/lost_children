@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import persistence.pojo.Lost;
-import reporting_dao.LostDao;
+import lost_found_dao.LostDao;
 
 /**
  *

@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import others_dto.StatusJson;
 import persistence.pojo.Lost;
 import persistence.pojo.Users;
-import reporting_dao.LostDao;
+import lost_found_dao.LostDao;
 import user_dao.UserDataRegisterDao;
 import utilities.ImageUpload;
 

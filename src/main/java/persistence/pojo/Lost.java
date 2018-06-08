@@ -43,7 +43,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Lost.findByLostLocation", query = "SELECT l FROM Lost l WHERE l.lostLocation = :lostLocation"),
     @NamedQuery(name = "Lost.findByLastName", query = "SELECT l FROM Lost l WHERE l.lastName = :lastName"),
     @NamedQuery(name = "Lost.findByMotherName", query = "SELECT l FROM Lost l WHERE l.motherName = :motherName"),
-    @NamedQuery(name = "Lost.updateLostReturned", query = "UPDATE Lost l  set l.returned =:returned where l.id =:id")})
+    @NamedQuery(name = "Lost.updateLostReturned", query = "UPDATE Lost l  set l.returned =:returned where l.id =:id"),
+    @NamedQuery(name = "Lost.findByGenderFnameLname", query = "SELECT l FROM Lost l WHERE l.firstName = :firstName AND l.lastName=:lastName AND l.gender=:gender"),
+    @NamedQuery(name = "Lost.findByGenderFname", query = "SELECT l FROM Lost l WHERE l.firstName = :firstName AND l.gender=:gender"),
+    @NamedQuery(name = "Lost.findByGenderLname", query = "SELECT l FROM Lost l WHERE l.lastName=:lastName AND l.gender=:gender")})
 public class Lost implements Serializable {
 
     private static final long serialVersionUID = 1L;

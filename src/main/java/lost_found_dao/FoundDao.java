@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reporting_dao;
+package lost_found_dao;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,6 +20,16 @@ import persistence.pojo.Users;
 public interface FoundDao extends CrudRepository<Found, Integer> {
 
     List<Found> findByReturned(@Param("returned") String value);
+
+    List<Found> findByImageUrl(@Param("imageUrl") String value);
+
+    List<Found> findByGender(@Param("gender") String value);
+    
+     List<Found> findByGenderFnameLname(@Param("gender") String gender, @Param("firstName") String firstName, @Param("lastName") String lastName);
+
+    List<Found> findByGenderFname(@Param("gender") String gender, @Param("firstName") String firstName);
+
+    List<Found> findByGenderLname(@Param("gender") String gender, @Param("lastName") String lastName);
 
     @Transactional
     @Modifying

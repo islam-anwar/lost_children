@@ -13,13 +13,16 @@ public class StatusJson {
     
     private String status;
 
+    public StatusJson() {
+        
+    }
+    
+    
+
     public StatusJson(String status) {
         this.status = status;
     }
 
-   
-    
-    
 
     public String getStatus() {
         return status;

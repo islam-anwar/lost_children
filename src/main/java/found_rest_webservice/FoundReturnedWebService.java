@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import others_dto.StatusJson;
 import persistence.pojo.Users;
-import reporting_dao.FoundDao;
+import lost_found_dao.FoundDao;
 import user.dto.UserImageUploadeDto;
 import user_dao.UserDataRegisterDao;
 import utilities.ImageUpload;
