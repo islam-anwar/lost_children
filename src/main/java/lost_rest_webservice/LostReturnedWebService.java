@@ -25,7 +25,7 @@ public class LostReturnedWebService {
     @Autowired
     ApplicationContext appContext;
 
-    public @RequestMapping(value = "/updateLostReturned.json", method = RequestMethod.POST)
+    public @RequestMapping(value = "/updateLostReturned.json", method = RequestMethod.GET)
     StatusJson updateLostReturned(@RequestParam(value = "returned") String value, @RequestParam(value = "id") int id) {
 
         LostDao lostDao = appContext.getBean(LostDao.class);

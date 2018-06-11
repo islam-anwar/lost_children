@@ -32,7 +32,7 @@ public class SearchWebService {
 
         SearchProcess searchProcess = context.getBean(SearchProcess.class);
 
-        return new LostFoundDataDto();
+        return searchProcess.search(searchData);
     }
 
     public ApplicationContext getContext() {

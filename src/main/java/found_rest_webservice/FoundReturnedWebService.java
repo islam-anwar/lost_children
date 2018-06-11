@@ -30,7 +30,7 @@ public class FoundReturnedWebService {
     @Autowired
     ApplicationContext appContext;
 
-    public @RequestMapping(value = "/updateFoundReturned.json", method = RequestMethod.POST)
+    public @RequestMapping(value = "/updateFoundReturned.json", method = RequestMethod.GET)
     StatusJson updateFoundReturned(@RequestParam(value = "returned") String value, @RequestParam(value = "id") Integer id) {
 
         FoundDao foundDao = appContext.getBean(FoundDao.class);
