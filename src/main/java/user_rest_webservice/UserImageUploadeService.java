@@ -41,8 +41,8 @@ public class UserImageUploadeService {
         String imageUrl = imageUpload.imageUploading(inputFile, email, "users_images");
 
         if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
-            int userId = userDataRegDao.updateUserImageUrl(imageUrl, email);
-            Users userData=userDataRegDao.findOne(userId);
+            userDataRegDao.updateUserImageUrl(imageUrl, email);
+            Users userData=userDataRegDao.findByEmail(email);
 
             userImageUploadeDto.setStatus("SUCCESS");
             userImageUploadeDto.setUser(userData);
