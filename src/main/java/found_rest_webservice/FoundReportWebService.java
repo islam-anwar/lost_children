@@ -5,7 +5,6 @@
  */
 package found_rest_webservice;
 
-
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -45,16 +44,18 @@ public class FoundReportWebService {
 
             Date date = new Date();
             found.setFoundUserId(userData);
-            String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "found_images");
-            if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
-                found.setImageUrl(imageUrl);
-                foundDao.save(found);
-                return new StatusJson("SUCCESS");
+            if (image != null) {
+                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "found_images");
+                if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
+                    found.setImageUrl(imageUrl);
+                    foundDao.save(found);
+                    return new StatusJson("SUCCESS");
 
+                }
             }
         }
 
-        return new StatusJson("FAILED") ;
+        return new StatusJson("FAILED");
     }
 
     public ApplicationContext getContext() {

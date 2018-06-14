@@ -44,11 +44,13 @@ public class LostReportingWebService {
 
             Date date = new Date();
             lost.setLostUserId(userData);
-            String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images");
-            if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
-                lost.setImageUrl(imageUrl);
-                lostDao.save(lost);
-                return new StatusJson("SUCCESS");
+            if (image != null) {
+                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images");
+                if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
+                    lost.setImageUrl(imageUrl);
+                    lostDao.save(lost);
+                    return new StatusJson("SUCCESS");
+                }
             }
         }
         return new StatusJson("FAILED");

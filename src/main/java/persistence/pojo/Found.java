@@ -67,7 +67,6 @@ public class Found implements Serializable {
     @Column(name = "mother_name")
     private String motherName;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 2000)
     @Column(name = "image_url")
     private String imageUrl;

@@ -61,7 +61,6 @@ public class Lost implements Serializable {
     @Column(name = "first_name")
     private String firstName;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 2000)
     @Column(name = "image_url")
     private String imageUrl;
