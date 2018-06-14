@@ -33,16 +33,20 @@ public class UserImageUploadeService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/imageUploade.json", headers = ("content-type=multipart/*"), method = RequestMethod.POST)
-    UserImageUploadeDto imageUpload(@RequestParam(value = "userImage") MultipartFile inputFile, @RequestParam(value = "email") String email) {
-        
-        UserDataRegisterDao userDataRegDao = appContext.getBean(UserDataRegisterDao.class);
-        UserImageUploadeDto userImageUploadeDto = (UserImageUploadeDto)appContext.getBean("userImageUploadeDto");
+    UserImageUploadeDto imageUpload(
+            @RequestParam(value = "userImage") MultipartFile inputFile,
+            @RequestParam(value = "email") String email,
+            @RequestParam(value = "extension") String imgExtension) {
 
-        String imageUrl = imageUpload.imageUploading(inputFile, email, "users_images");
+        UserDataRegisterDao userDataRegDao = appContext.getBean(UserDataRegisterDao.class);
+        UserImageUploadeDto userImageUploadeDto = (UserImageUploadeDto) appContext.getBean("userImageUploadeDto");
+
+        String[] extensionSplits = imgExtension.split("/");
+        String imageUrl = imageUpload.imageUploading(inputFile, email, "users_images", extensionSplits[1]);
 
         if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
-            userDataRegDao.updateUserImageUrl(imageUrl, email);
-            Users userData=userDataRegDao.findByEmail(email);
+            int userId = userDataRegDao.updateUserImageUrl(imageUrl, email);
+            Users userData = userDataRegDao.findOne(userId);
 
             userImageUploadeDto.setStatus("SUCCESS");
             userImageUploadeDto.setUser(userData);

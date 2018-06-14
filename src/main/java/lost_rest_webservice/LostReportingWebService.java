@@ -34,7 +34,7 @@ public class LostReportingWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/lostReport.json", method = RequestMethod.POST)
-    StatusJson reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image) {
+    StatusJson reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image,@RequestParam(value = "extension") String imgExtension) {
 
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         LostDao lostDao = context.getBean(LostDao.class);
@@ -45,7 +45,8 @@ public class LostReportingWebService {
             Date date = new Date();
             lost.setLostUserId(userData);
             if (image != null) {
-                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images");
+                String[] extensionSplits = imgExtension.split("/");
+                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images",extensionSplits[1]);
                 if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
                     lost.setImageUrl(imageUrl);
                     lostDao.save(lost);

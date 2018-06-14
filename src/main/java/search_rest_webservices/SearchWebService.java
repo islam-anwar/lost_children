@@ -12,7 +12,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import others_dto.LostFoundDataDto;
 import others_dto.SearchDto;
 import utilities.SearchProcess;
@@ -28,9 +30,11 @@ public class SearchWebService {
     private ApplicationContext context;
 
     public @RequestMapping(value = "/search.json", method = RequestMethod.POST)
-    LostFoundDataDto searchLostFound(@RequestBody SearchDto searchData) {
+    LostFoundDataDto searchLostFound(@RequestParam("firstName")String firstName,@RequestParam("lastName")String lastName,@RequestParam("gender")String gender,@RequestParam(value = "userImage") MultipartFile image) {
 
         SearchProcess searchProcess = context.getBean(SearchProcess.class);
+        
+        SearchDto searchData = new SearchDto(firstName, lastName, gender, image);
 
         return searchProcess.search(searchData);
     }

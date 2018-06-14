@@ -36,8 +36,8 @@ public class SearchProcess {
         LostDao lostDao = context.getBean(LostDao.class);
         FoundDao foundDao = context.getBean(FoundDao.class);
         
-        List<Lost> lostList = new ArrayList<Lost>();
-        List<Found> foundList = new ArrayList<Found>();
+        List<Lost> lostList = new ArrayList<>();
+        List<Found> foundList = new ArrayList<>();
         LostFoundDataDto lostFoundDto = new LostFoundDataDto(lostList, foundList);
 
         if (searchData.getFirstName() != null && searchData.getLastName() != null) {
