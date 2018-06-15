@@ -19,6 +19,7 @@ found_rest_webservice\FoundReturnedWebService.class
 utilities\SearchProcess.class
 persistence\pojo\Users.class
 found_rest_webservice\FoundReportWebService.class
+controllers\MainController.class
 persistence\pojo\Users_.class
 lost_found_dao\LostDao.class
 lost_rest_webservice\LostReturnedWebService.class
