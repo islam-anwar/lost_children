@@ -4,6 +4,7 @@
     Author     : eslam java
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,7 @@
                 <c:forEach items="${lostchildren}" var="lost" >  
 
                     <tr>
-                        <td><img src="${found.imageUrl}" style="width: 150px;height: 150px;padding-top: 20px"/></td>
+                        <td><img src="<c:out value="${lost.imageUrl}"/>" style="width: 150px;height: 150px;padding-top: 20px"/></td>
                         <td>${lost.firstName}</td> 
                         <td>${lost.lastName}</td>
                         <td>${lost.motherName}</td>
