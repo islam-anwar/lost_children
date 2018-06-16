@@ -35,12 +35,18 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
-         
+
+
     </head>
     <body>
-        
+
         <jsp:include page="Header.jsp"></jsp:include> 
-                
+        <div style="padding-left: 20%;padding-top: 8% ;"> 
+            <font   style=" font-size: 100px; font-family: fantasy;font-style: italic;color: steelblue" >L&nbsp;O&nbsp;S&nbsp;T&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;H&nbsp;I&nbsp;L&nbsp;D&nbsp;R&nbsp;E&nbsp;N</font>
+            
+
+        </div>
+
+
     </body>
 </html>
