@@ -3,6 +3,7 @@ persistence\pojo\Found.class
 search_rest_webservices\SearchWebService.class
 others_dto\SearchDto.class
 user_dao\UserLogInDao.class
+controllers\NewClass.class
 user\dto\UserImageUploadeDto.class
 user_dao\UserDataRegisterDao.class
 found_rest_webservice\FoundRetrieveWebService.class

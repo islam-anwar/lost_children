@@ -8,11 +8,8 @@ package lost_rest_webservice;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +34,7 @@ public class LostReportingWebService {
     @Autowired
     ImageUpload imageUpload;
 
-    public @RequestMapping(value = "/lostReport.json", method = RequestMethod.POST)
+    public @RequestMapping(value = "/lostReport.json",headers = ("content-type=multipart/*"), method = RequestMethod.POST)
     StatusJson reportingLost(@RequestParam(value = "lost") String lostJson, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image, @RequestParam(value = "extension") String imgExtension) {
 
         ObjectMapper mapper = new ObjectMapper();

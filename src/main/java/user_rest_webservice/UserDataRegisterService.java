@@ -42,6 +42,21 @@ public class UserDataRegisterService {
 
         return userDao.save(user);
     }
+    
+       public @RequestMapping(value = "/editProfile.json", method = RequestMethod.POST)
+    Users editUserData(@RequestBody Users user) {
+
+        UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
+        Users userData = userDao.findByEmail(user.getEmail());
+
+        if (userData != null && (int)user.getId()!= (int)userData.getId()) {
+            Users userResponse = new Users();
+            userResponse.setEmail("FOUND");
+            return userResponse;
+        }
+
+        return userDao.save(user);
+    }
 
     public @RequestMapping(value = "/emailCheck.json", method = RequestMethod.GET)
     StatusJson checkingEmail(@RequestParam(value = "email") String email) {

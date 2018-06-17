@@ -34,7 +34,7 @@ public class FoundReportWebService {
     @Autowired
     ImageUpload imageUpload;
 
-    public @RequestMapping(value = "/foundReport.json", method = RequestMethod.POST)
+    public @RequestMapping(value = "/foundReport.json", headers = ("content-type=multipart/*"),method = RequestMethod.POST)
     StatusJson reportingFound(@RequestParam(value = "found") String foundJson, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image, @RequestParam(value = "extension") String imgExtension) {
 
         ObjectMapper mapper = new ObjectMapper();
