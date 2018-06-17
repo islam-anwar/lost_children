@@ -5,10 +5,11 @@
  */
 package found_rest_webservice;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,8 +35,15 @@ public class FoundReportWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/foundReport.json", method = RequestMethod.POST)
-    StatusJson reportingFound(@RequestBody Found found, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image,@RequestParam(value = "extension") String imgExtension) {
+    StatusJson reportingFound(@RequestParam(value = "found") String foundJson, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image, @RequestParam(value = "extension") String imgExtension) {
 
+        ObjectMapper mapper = new ObjectMapper();
+        Found found = new Found();
+        try {
+            found = mapper.readValue(foundJson, Found.class);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         FoundDao foundDao = context.getBean(FoundDao.class);
         Users userData = userDao.findByEmail(email);
@@ -46,7 +54,7 @@ public class FoundReportWebService {
             found.setFoundUserId(userData);
             if (image != null) {
                 String[] extensionSplits = imgExtension.split("/");
-                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "found_images",extensionSplits[1]);
+                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "found_images", extensionSplits[1]);
                 if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
                     found.setImageUrl(imageUrl);
                     foundDao.save(found);

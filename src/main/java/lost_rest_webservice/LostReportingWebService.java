@@ -5,7 +5,11 @@
  */
 package lost_rest_webservice;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,8 +38,16 @@ public class LostReportingWebService {
     ImageUpload imageUpload;
 
     public @RequestMapping(value = "/lostReport.json", method = RequestMethod.POST)
-    StatusJson reportingFound(@RequestBody Lost lost, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image,@RequestParam(value = "extension") String imgExtension) {
+    StatusJson reportingLost(@RequestParam(value = "lost") String lostJson, @RequestParam(value = "email") String email, @RequestParam(value = "image") MultipartFile image, @RequestParam(value = "extension") String imgExtension) {
 
+        ObjectMapper mapper = new ObjectMapper();
+        Lost lost = new Lost();
+        try {
+            lost = mapper.readValue(lostJson, Lost.class);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         UserDataRegisterDao userDao = context.getBean(UserDataRegisterDao.class);
         LostDao lostDao = context.getBean(LostDao.class);
         Users userData = userDao.findByEmail(email);
@@ -46,7 +58,7 @@ public class LostReportingWebService {
             lost.setLostUserId(userData);
             if (image != null) {
                 String[] extensionSplits = imgExtension.split("/");
-                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images",extensionSplits[1]);
+                String imageUrl = imageUpload.imageUploading(image, email + "-" + date.toString().replace(" ", "-").replace(":", "-") + System.nanoTime(), "lost_images", extensionSplits[1]);
                 if (!imageUrl.equals(ImageUpload.FILE_CAN_NOT_BE_SAVED) && !imageUrl.equals(ImageUpload.FILE_IS_EMAPTY)) {
                     lost.setImageUrl(imageUrl);
                     lostDao.save(lost);
