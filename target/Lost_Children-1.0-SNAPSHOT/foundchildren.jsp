@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-     <head>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,19 +36,19 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
-         
+
+
     </head>
     <body>
-       <jsp:include page="Header.jsp"></jsp:include> 
-       
-        <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Found Children</h1>
-        
-        
+        <jsp:include page="Header.jsp"></jsp:include> 
+
+            <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Found Children</h1>
+
+
 
             <div style="padding-top: 20px;padding-left: 40px" algin="center">
                 <table style="width:100%">
-                    
+
                     <tr style="background-color: aquamarine">
                         <th>Image</th>
                         <th>First Name</th>
@@ -59,8 +59,8 @@
                         <th>Description</th>
                         <th>Returned</th>
                         <th>Current Location</th>
-                    
-                        
+
+
                     </tr>
                 <c:forEach items="${foundChildren}" var="found" >  
 
@@ -75,11 +75,11 @@
                         <td>${found.returned}</td>
                         <td>${found.currentLocation}</td>
                     </tr>
-                   
+
 
                 </c:forEach> 
             </table>
         </div>
-
+        <jsp:include page="footer.jsp"></jsp:include> 
     </body>
 </html>

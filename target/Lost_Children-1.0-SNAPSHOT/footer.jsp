@@ -17,15 +17,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>Lost<span>Children</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                    <div class=" " style="margin-left: 50%;margin-top: 10% ;margin-bottom: 10%;width: 100%" >
+                        <h2 style="background-color: chartreuse;color: slateblue;width: 100%;text-align: center">Lost<span>Children</span></h2>
                         <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>&nbsp;
+                            &nbsp;<a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>&nbsp;
+                           &nbsp; <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube"></i></a>&nbsp;
+                           &nbsp; <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i></a>&nbsp;
+                          
                         </div>
                     </div>
                 </div>

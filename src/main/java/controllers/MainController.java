@@ -48,7 +48,7 @@ public class MainController {
           
           List<Lost> lostDataList = (List<Lost>) lostDao.findAll(); 
         lostData.addAttribute("lostChildren",lostDataList);
-
+        
         return "lostchildren";
     }
     

@@ -41,14 +41,14 @@
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include>
-        
-        <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Users</h1>
-        
-        
+
+            <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Users</h1>
+
+
 
             <div style="padding-top: 20px;padding-left: 40px" algin="center">
                 <table style="width:100%">
-                    
+
                     <tr style="background-color: aquamarine">
                         <th>Image</th>
                         <th>First Name</th>
@@ -56,8 +56,8 @@
                         <th>Address</th>
                         <th>Email</th>
                         <th>Phone</th>
-                    
-                        
+
+
                     </tr>
                 <c:forEach items="${users}" var="user" >  
 
@@ -69,11 +69,11 @@
                         <td>${user.email}</td>
                         <td>${user.phone}</td>
                     </tr>
-                   
+
 
                 </c:forEach> 
             </table>
         </div>
-
+        <jsp:include page="footer.jsp"></jsp:include> 
     </body>
 </html>

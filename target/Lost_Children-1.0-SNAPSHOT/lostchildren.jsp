@@ -36,19 +36,19 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        
-         
+
+
     </head>
     <body>
         <jsp:include page="Header.jsp"></jsp:include> 
-        
-         <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Lost Children</h1>
-        
-        
+
+            <h1 style="padding-left:50%;padding-top: 30px;padding-bottom: 20px"> Lost Children</h1>
+
+
 
             <div style="padding-top: 20px;padding-left: 40px" algin="center">
                 <table style="width:100%">
-                    
+
                     <tr style="background-color: aquamarine">
                         <th>Image</th>
                         <th>First Name</th>
@@ -61,28 +61,30 @@
                         <th>Address</th>
                         <td>Age</td>
                         <td>Phone</td>
-                    
-                        
+
+
                     </tr>
-                <c:forEach items="${lostchildren}" var="lost" >  
+                <c:forEach items="${lostChildren}" var="lost" >  
 
                     <tr>
                         <td><img src="<c:out value="${lost.imageUrl}"/>" style="width: 150px;height: 150px;padding-top: 20px"/></td>
-                        <td>${lost.firstName}</td> 
+                        <td><c:out value="${lost.firstName}"/></td> 
                         <td>${lost.lastName}</td>
                         <td>${lost.motherName}</td>
                         <td>${lost.gender}</td>
-                        <td>${lost.lostdDate}</td>
+                        <td>${lost.lostDate}</td>
                         <td>${lost.description}</td>
                         <td>${lost.returned}</td>
-                        <td>${lost.address}</td>
+                        <td>${lost.orginalAddress}</td>
                         <td>${lost.age}</td>
                         <td>${lost.phone}</td>
                     </tr>
-                   
+
 
                 </c:forEach> 
             </table>
         </div>
+
+        <jsp:include page="footer.jsp"></jsp:include> 
     </body>
 </html>
