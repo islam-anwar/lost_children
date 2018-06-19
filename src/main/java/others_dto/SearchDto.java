@@ -21,18 +21,17 @@ public class SearchDto {
     private String lastName;
     private String gender;
     private MultipartFile image;
+    private String extension;
 
     public SearchDto() {
     }
-    
-    
-    
 
-    public SearchDto(String firstName, String lastName, String gender, MultipartFile image) {
+    public SearchDto(String firstName, String lastName, String gender, MultipartFile image, String extension) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.image = image;
+        this.extension = extension;
     }
 
     public String getFirstName() {
@@ -66,7 +65,13 @@ public class SearchDto {
     public void setImage(MultipartFile image) {
         this.image = image;
     }
-    
-    
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
+    }
 
 }

@@ -5,11 +5,8 @@
  */
 package search_rest_webservices;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,11 +27,11 @@ public class SearchWebService {
     private ApplicationContext context;
 
     public @RequestMapping(value = "/search.json", method = RequestMethod.POST)
-    LostFoundDataDto searchLostFound(@RequestParam("firstName")String firstName,@RequestParam("lastName")String lastName,@RequestParam("gender")String gender,@RequestParam(value = "userImage") MultipartFile image) {
+    LostFoundDataDto searchLostFound(@RequestParam("firstName")String firstName,@RequestParam("lastName")String lastName,@RequestParam("gender")String gender,@RequestParam(value = "userImage") MultipartFile image, @RequestParam(value = "extension") String imgExtension) {
 
         SearchProcess searchProcess = context.getBean(SearchProcess.class);
         
-        SearchDto searchData = new SearchDto(firstName, lastName, gender, image);
+        SearchDto searchData = new SearchDto(firstName, lastName, gender, image,imgExtension);
 
         return searchProcess.search(searchData);
     }
